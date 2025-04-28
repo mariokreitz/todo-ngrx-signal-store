@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { TodoStore } from './store/todos.store';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +7,10 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  title = 'todo-with-ngrx-signal-store';
+export class AppComponent implements OnInit {
+  store = inject(TodoStore);
+
+  ngOnInit(): void {
+    this.store.todos();
+  }
 }
